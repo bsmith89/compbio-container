@@ -1,11 +1,9 @@
 # Requirements for all of my compbio containers.
 #
-FROM continuumio/miniconda3 AS base
-WORKDIR /root
-RUN apt-get update && apt-get install -y neovim less git make
+FROM continuumio/miniconda3 AS compbio
+RUN apt-get update && apt-get install -y neovim less git make g++
 RUN conda install -y -c conda-forge mamba
-RUN mamba install -y -c conda-forge -c bioconda \
-    snakemake \
+RUN mamba install -y -c conda-forge \
     numpy \
     scipy \
     scikit-learn \
@@ -16,8 +14,31 @@ RUN mamba install -y -c conda-forge -c bioconda \
     statsmodels \
     patsy \
     cython \
-    biopython \
     ipython \
     jupyter \
     jupyter_contrib_nbextensions \
-    jupyter_nbextensions_configurator
+    jupyter_nbextensions_configurator \
+    pymc3 \
+    arviz \
+    tqdm \
+    pytorch \
+    networkx \
+RUN pip install pyro-ppl
+RUN mamba install -c bioconda -c faircloth-lab \
+    snakemake \
+    biopython \
+    sickle-trim \
+    scythe \
+    megahit \
+    bowtie2 \
+    samtools \
+    seqtk \
+    emboss \
+    fastuniq \
+    hmmer \
+    lz4 \
+    muscle \
+    prokka \
+    prodigal \
+    pysam \
+    scikit-bio \
