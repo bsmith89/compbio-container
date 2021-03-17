@@ -5,14 +5,6 @@ GIT=git
 .SECONDARY:
 .POSIX:
 
-.build/%-build: $(shell ${GIT} ls-files $*)
-	docker build -t ${ROOTNAME}/$* $*
-	@touch $@
-
-.build/%-push: .build/%-build
-	docker push ${ROOTNAME}/$*
-	@touch $@
-
 ## Build the container %.
 build-%: .build/%-build
 	@echo Successfully built $*.
@@ -24,6 +16,15 @@ push-%: .build/%-push
 ## Run the container %.
 run-%: .build/%-build
 	docker run -it --rm ${ROOTNAME}/$*
+
+.build/%-build: $(shell ${GIT} ls-files $*)
+	docker build -t ${ROOTNAME}/$* $*
+	@touch $@
+
+.build/%-push: .build/%-build
+	docker push ${ROOTNAME}/$*
+	@touch $@
+
 
 # Stolen from https://gist.github.com/klmr/575726c7e05d8780505a
 # sed script explained:
