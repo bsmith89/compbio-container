@@ -1,19 +1,26 @@
-ROOTNAME=bsmith89
-GIT=git
+ROOTNAME = bsmith89
+GIT = git
 
 .DELETE_ON_ERROR:
 .SECONDARY:
 .POSIX:
+.DEFAULT_GOAL := help
 
-## Build the container %.
+SPECS = $(shell git ls-files */ | xargs dirname)
+
+## List all possible specification names.
+list:
+	@echo ${SPECS}
+
+## Build the container specified by %/.
 build-%: .build/%-build
 	@echo Successfully built $*.
 
-## Push the container % to remote.
+## Push the container specified by %/ to remote.
 push-%: .build/%-push
 	@echo Successfully pushed $* to remote.
 
-## Run the container %.
+## Run the container specified by %/.
 run-%: .build/%-build
 	docker run -it --rm ${ROOTNAME}/$*
 
@@ -78,5 +85,4 @@ help:
 			printf "%s ", words[i]; \
 		} \
 		printf "\n"; \
-	}' \
-	| more $(shell test $(shell uname) == Darwin && echo '--no-init --raw-control-chars')
+	}'
