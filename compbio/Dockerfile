@@ -98,3 +98,8 @@ RUN \
     mamba install -y -c conda-forge -c bioconda \
         trimmomatic \
     && conda clean -afy
+RUN \
+    mamba install -y -c conda-forge -c bioconda \
+       r-vegan \
+       r-dplyr \
+    && conda clean -afy
