@@ -25,7 +25,7 @@ run-%: .build/%-build
 	docker run -it --rm ${ROOTNAME}/$*
 
 .build/%-build: specs/%/*
-	docker build -t ${ROOTNAME}/$* $*
+	docker build -t ${ROOTNAME}/$* specs/$*
 	@touch $@
 
 .build/%-push: .build/%-build
