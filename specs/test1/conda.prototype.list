@@ -1,0 +1,14 @@
+python
+statsmodels
+snakemake
+netcdf4
+tqdm
+jupyterlab
+scikit-learn
+pandas
+xarray
+seaborn
+matplotlib
+scipy
+numpy
+rpy2
