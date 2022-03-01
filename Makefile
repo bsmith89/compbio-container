@@ -6,25 +6,25 @@ GIT = git
 .POSIX:
 .DEFAULT_GOAL := help
 
-SPECS = $(shell git ls-files */ | xargs dirname)
+SPECS = $(shell ls specs/)
 
 ## List all possible specification names.
 list:
 	@echo ${SPECS}
 
-## Build the container specified by %/.
+## Build the container specified by specs/%/.
 build-%: .build/%-build
 	@echo Successfully built $*.
 
-## Push the container specified by %/ to remote.
+## Push the container specified by specs/%/ to remote.
 push-%: .build/%-push
 	@echo Successfully pushed $* to remote.
 
-## Run the container specified by %/.
+## Run the container specified by specs/%/.
 run-%: .build/%-build
 	docker run -it --rm ${ROOTNAME}/$*
 
-.build/%-build: $(shell ${GIT} ls-files $*)
+.build/%-build: specs/%/*
 	docker build -t ${ROOTNAME}/$* $*
 	@touch $@
 
