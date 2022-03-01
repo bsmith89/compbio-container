@@ -16,8 +16,8 @@ RUN \
     conda install -y -c conda-forge \
         mamba \
     && conda clean -afy
-COPY conda/packages.list /tmp/
+COPY conda.list /tmp/
 RUN \
     mamba install -y -c conda-forge -c bioconda \
-        --file=/tmp/packages.list
+        --file=/tmp/conda.list \
     && conda clean -afy
