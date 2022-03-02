@@ -13,6 +13,22 @@ RUN \
         libtbb2 \
     && rm -rf /var/lib/apt/lists/*
 RUN \
+    mkdir -p src && cd src \
+    && git clone https://github.com/zjshi/gt-pro gt-pro && cd gt-pro \
+    && make && ln -s $PWD/GT_Pro /usr/bin/
+RUN \
+    mkdir -p src && cd src \
+    && git clone https://github.com/lh3/gfa1 gfa1 && cd gfa1/misc \
+    && make && ln -s $PWD/fastg2gfa /usr/bin/
+RUN \
+    mkdir -p src && cd src \
+    && git clone https://github.com/najoshi/sickle sickle && cd sickle \
+    && make && ln -s $PWD/sickle /usr/bin/
+RUN \
+    mkdir -p src && cd src \
+    && git clone https://github.com/vsbuffalo/scythe scythe && cd scythe \
+    && make all && ln -s $PWD/scythe /usr/bin/
+RUN \
     conda install -y -c conda-forge \
         mamba \
     && conda clean -afy
@@ -78,22 +94,6 @@ RUN \
         pymc3 \
         arviz \
     && conda clean -afy
-RUN \
-    mkdir -p src && cd src \
-    && git clone https://github.com/zjshi/gt-pro gt-pro && cd gt-pro \
-    && make && ln -s $PWD/GT_Pro /usr/bin/
-RUN \
-    mkdir -p src && cd src \
-    && git clone https://github.com/lh3/gfa1 gfa1 && cd gfa1/misc \
-    && make && ln -s $PWD/fastg2gfa /usr/bin/
-RUN \
-    mkdir -p src && cd src \
-    && git clone https://github.com/najoshi/sickle sickle && cd sickle \
-    && make && ln -s $PWD/sickle /usr/bin/
-RUN \
-    mkdir -p src && cd src \
-    && git clone https://github.com/vsbuffalo/scythe scythe && cd scythe \
-    && make all && ln -s $PWD/scythe /usr/bin/
 RUN \
     mamba install -y -c conda-forge -c bioconda \
         trimmomatic \
