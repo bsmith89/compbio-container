@@ -1,4 +1,4 @@
-FROM continuumio/miniconda:4.7.12
+FROM --platform=linux/amd64 condaforge/mambaforge:4.11.0-4
 RUN \
     apt-get --allow-releaseinfo-change update \
     && apt-get install -y \
