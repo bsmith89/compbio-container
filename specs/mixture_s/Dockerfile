@@ -1,4 +1,4 @@
-FROM continuumio/miniconda
+FROM continuumio/miniconda:4.7.12
 # docker build -t mixture .
 # docker run --runtime=nvidia -p 7777:8888 -v ${PWD}:/DP -it jesselee/pytorchls bash
 # docker run -v ${dir}:/mixture -it mixture bash
@@ -29,5 +29,3 @@ RUN true \
     && apt-get install -y \
         default-jre \
     && rm -rf /var/lib/apt/lists/*
-COPY MixtureS /MixtureS
-ENV PATH="/MixtureS:${PATH}"
