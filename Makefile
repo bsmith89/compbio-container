@@ -32,8 +32,11 @@ run-%: .build/%-build
 	docker build -t ${ROOTNAME}/${SPEC_NAME} -t ${ROOTNAME}/${SPEC_NAME}:latest -t ${ROOTNAME}/${SPEC_NAME}:${SPEC_GIT_HASH} specs/$*
 	@touch $@
 
+.build/%-push: SPEC_NAME=$*
+.build/%-push: SPEC_GIT_HASH=$(shell git log specs/${SPEC_NAME}/ | head -1 | awk '{print $$2}')
 .build/%-push: .build/%-build
 	docker push ${ROOTNAME}/$*:${SPEC_GIT_HASH}
+	docker push ${ROOTNAME}/$*:latest
 	@touch $@
 
 
