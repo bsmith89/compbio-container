@@ -11,4 +11,4 @@ RUN \
 RUN \
     mkdir -p src && cd src \
     && git clone https://github.com/zjshi/gt-pro gt-pro && cd gt-pro \
-    && make && ln -s $PWD/GT_Pro /usr/bin/
+    && make && ln -s $PWD/GT_Pro /usr/bin/ && ln -s $PWD/scripts/gtp_parse.py /usr/bin/
