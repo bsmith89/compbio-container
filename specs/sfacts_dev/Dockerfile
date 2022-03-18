@@ -1,6 +1,6 @@
-FROM pytorch/pytorch AS compbio
+FROM pytorch/pytorch:1.11.0-cuda11.3-cudnn8-runtime
 RUN \
-    mamba install -y -c conda-forge -c bioconda \
+    conda install -y -c conda-forge -c bioconda \
         cython \
         ipython \
         jupyter_contrib_nbextensions \
