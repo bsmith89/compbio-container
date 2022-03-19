@@ -3,9 +3,8 @@ RUN \
     conda install -y -c conda-forge -c bioconda \
         cython \
         ipython \
-        jupyter_contrib_nbextensions \
-        jupyter_nbextensions_configurator \
         jupyterlab \
+        ipywidgets \
         matplotlib \
         numpy \
         pandas \
@@ -16,6 +15,6 @@ RUN \
         statsmodels \
         tqdm \
         xarray \
-        pyro-ppl \
         netCDF4 \
+        pyro-ppl \
     && conda clean -afy
