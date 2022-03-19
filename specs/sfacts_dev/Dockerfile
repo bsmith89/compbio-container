@@ -17,4 +17,5 @@ RUN \
         tqdm \
         xarray \
         pyro-ppl \
+        netCDF4 \
     && conda clean -afy
