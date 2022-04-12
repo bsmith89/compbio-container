@@ -28,6 +28,7 @@ run-%: .build/%-build
 .build/%-build: SPEC_NAME=$*
 .build/%-build: SPEC_GIT_HASH=$(shell git log specs/${SPEC_NAME}/ | head -1 | awk '{print $$2}')
 .build/%-build: specs/%/*
+	git diff --exit-code HEAD specs/$*
 	@echo Building ${SPEC_NAME} at ${SPEC_GIT_HASH}
 	docker build -t ${ROOTNAME}/${SPEC_NAME} -t ${ROOTNAME}/${SPEC_NAME}:latest -t ${ROOTNAME}/${SPEC_NAME}:${SPEC_GIT_HASH} specs/$*
 	@touch $@
