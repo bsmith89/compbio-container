@@ -31,10 +31,6 @@ RUN \
     && git clone https://github.com/vsbuffalo/scythe scythe && cd scythe \
     && make all && ln -s $PWD/scythe /usr/bin/
 RUN \
-    conda install -y -c conda-forge \
-        mamba \
-    && conda clean -afy
-RUN \
     mamba install -y -c conda-forge -c bioconda \
         cython \
         ipython \
