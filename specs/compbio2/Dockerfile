@@ -1,6 +1,6 @@
 # Requirements for all of my compbio containers.
 #
-FROM pytorch/pytorch AS compbio
+FROM condaforge/mambaforge:4.12.0-2 AS compbio
 RUN \
     apt-get update \
     && apt-get install -y \
@@ -11,6 +11,8 @@ RUN \
         g++ \
         libz-dev \
         libtbb2 \
+        htop \
+        tmux \
     && rm -rf /var/lib/apt/lists/*
 RUN \
     mkdir -p src && cd src \
@@ -55,6 +57,7 @@ RUN \
         statsmodels \
         tqdm \
         xarray \
+        netCDF4 \
         nodejs \
         rpy2 \
         xlrd openpyxl \
@@ -83,16 +86,6 @@ RUN \
         diamond \
         bedtools \
         fasttree \
-    && conda clean -afy
-RUN \
-    mamba install -y -c \
-        conda-forge \
-        pyro-ppl \
-    && conda clean -afy
-RUN \
-    mamba install -y -c conda-forge \
-        pymc3 \
-        arviz \
     && conda clean -afy
 RUN \
     mamba install -y -c conda-forge -c bioconda \
