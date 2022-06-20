@@ -102,3 +102,7 @@ RUN \
     mamba install -y -c conda-forge \
         matplotlib-venn \
     && conda clean -afy
+RUN \
+    mamba install -y -c conda-forge \
+        conda-pack \
+    && conda clean -afy
