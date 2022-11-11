@@ -7,6 +7,7 @@ RUN \
         g++ \
         libz-dev \
         libtbb2 \
+        pigz \
     && rm -rf /var/lib/apt/lists/*
 RUN \
     mkdir -p src && cd src \
