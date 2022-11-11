@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 condaforge/mambaforge:4.11.0-4
+FROM --platform=linux/amd64 ubuntu:18.04
 RUN \
     apt-get update \
     && apt-get install -y \
