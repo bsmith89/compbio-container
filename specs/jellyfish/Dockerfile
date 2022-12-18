@@ -26,4 +26,5 @@ RUN \
     && cd jellyfish-2.3.0 \
     && ./configure --enable-python-binding \
     && make -j4 \
-    && make install
+    && make install \
+    && pip install swig/python
