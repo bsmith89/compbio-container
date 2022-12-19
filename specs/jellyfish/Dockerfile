@@ -27,4 +27,4 @@ RUN \
     && ./configure --enable-python-binding \
     && make -j4 \
     && make install \
-    && pip install swig/python
+    && pip install -e swig/python
