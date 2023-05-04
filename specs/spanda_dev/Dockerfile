@@ -33,7 +33,7 @@ RUN R -e "install.packages('devtools')" \
     && R -e "install.packages('R.utils')" \
     && R -e "install.packages('BiocManager')" \
     && R -e "BiocManager::install('Biobase')" \
-    && R -e "install.packages('NMF')" \
+    && R -e "install.packages('NMF')"
 
 RUN wget https://cran.r-project.org/src/contrib/Archive/vegan/vegan_2.5-6.tar.gz && \
     R CMD INSTALL vegan_2.5-6.tar.gz && \
