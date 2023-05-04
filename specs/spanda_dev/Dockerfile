@@ -8,6 +8,9 @@
 
 FROM condaforge/mambaforge:4.12.0-2
 
+ARG TZ=America/Los_Angeles
+ARG DEBIAN_FRONTEND=noninteractive
+
 ## install system packages
 RUN DEBIAN_FRONTEND=noninteractive; apt-get update && apt-get -y install procps wget less tmux htop make && \
     apt-get install -y apt-transport-https software-properties-common && \
