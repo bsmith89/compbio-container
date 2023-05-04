@@ -9,7 +9,7 @@
 FROM condaforge/mambaforge:4.12.0-2
 
 ## install system packages
-RUN apt-get update && apt-get -y install procps wget less tmux htop make && \
+RUN DEBIAN_FRONTEND=noninteractive; apt-get update && apt-get -y install procps wget less tmux htop make && \
     apt-get install -y apt-transport-https software-properties-common && \
     apt-get install -y r-base && \
     rm -rf /var/lib/apt/lists/*
