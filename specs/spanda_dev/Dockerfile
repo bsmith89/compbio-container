@@ -39,6 +39,8 @@ RUN wget https://cran.r-project.org/src/contrib/Archive/vegan/vegan_2.5-6.tar.gz
     R CMD INSTALL vegan_2.5-6.tar.gz && \
         rm vegan_2.5-6.tar.gz
 
+RUN R -e "install.packages('pkgmaker')"
+
 RUN wget https://cran.r-project.org/src/contrib/Archive/NMF/NMF_0.23.0.tar.gz && \
     R CMD INSTALL NMF_0.23.0.tar.gz && \
         rm NMF_0.23.0.tar.gz
