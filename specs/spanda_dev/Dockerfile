@@ -44,3 +44,10 @@ RUN R -e "install.packages('pkgmaker')"
 RUN wget https://cran.r-project.org/src/contrib/Archive/NMF/NMF_0.23.0.tar.gz && \
     R CMD INSTALL NMF_0.23.0.tar.gz && \
         rm NMF_0.23.0.tar.gz
+
+RUN DEBIAN_FRONTEND=noninteractive; apt-get update && \
+    apt-get -y install libssl-dev libfontconfig1-dev libcurl4-openssl-dev \
+    libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev \
+    libjpeg-dev && \
+    rm -rf /var/lib/apt/lists/*
+RUN R -e "install.packages('devtools')" \
