@@ -8,14 +8,16 @@
 
 FROM condaforge/mambaforge:4.12.0-2
 
-ARG TZ=America/Los_Angeles
-ARG DEBIAN_FRONTEND=noninteractive
-
 ## install system packages
-RUN DEBIAN_FRONTEND=noninteractive; apt-get update && apt-get -y install procps wget less tmux htop make && \
-    apt-get install -y apt-transport-https software-properties-common && \
-    apt-get install -y r-base && \
-    rm -rf /var/lib/apt/lists/*
+RUN TZ=America/Los_Angeles; DEBIAN_FRONTEND=noninteractive; \
+    apt-get update \
+    && apt-get -y install procps wget less tmux htop make \
+         libssl-dev libfontconfig1-dev libcurl4-openssl-dev \
+         libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev \
+         libjpeg-dev r-base \
+    && rm -rf /var/lib/apt/lists/*
+
+# && apt-get install -y apt-transport-https software-properties-common && \
 
 ## install r dependencies
 RUN R -e "install.packages('devtools')" \
@@ -33,21 +35,14 @@ RUN R -e "install.packages('devtools')" \
     && R -e "install.packages('R.utils')" \
     && R -e "install.packages('BiocManager')" \
     && R -e "BiocManager::install('Biobase')" \
-    && R -e "install.packages('NMF')"
+    && R -e "install.packages('NMF')" \
+    && R -e "install.packages('vegan')" \
+    && R -e "install.packages('pkgmaker')"
 
-RUN wget https://cran.r-project.org/src/contrib/Archive/vegan/vegan_2.5-6.tar.gz && \
-    R CMD INSTALL vegan_2.5-6.tar.gz && \
-        rm vegan_2.5-6.tar.gz
-
-RUN R -e "install.packages('pkgmaker')"
-
-RUN wget https://cran.r-project.org/src/contrib/Archive/NMF/NMF_0.23.0.tar.gz && \
-    R CMD INSTALL NMF_0.23.0.tar.gz && \
-        rm NMF_0.23.0.tar.gz
-
-RUN DEBIAN_FRONTEND=noninteractive; apt-get update && \
-    apt-get -y install libssl-dev libfontconfig1-dev libcurl4-openssl-dev \
-    libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev \
-    libjpeg-dev && \
-    rm -rf /var/lib/apt/lists/*
-RUN R -e "install.packages('devtools')" \
+# RUN wget https://cran.r-project.org/src/contrib/Archive/vegan/vegan_2.5-6.tar.gz && \
+#     R CMD INSTALL vegan_2.5-6.tar.gz && \
+#         rm vegan_2.5-6.tar.gz
+#
+# RUN wget https://cran.r-project.org/src/contrib/Archive/NMF/NMF_0.23.0.tar.gz && \
+#     R CMD INSTALL NMF_0.23.0.tar.gz && \
+#         rm NMF_0.23.0.tar.gz
