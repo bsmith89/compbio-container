@@ -12,10 +12,11 @@ FROM condaforge/mambaforge:4.12.0-2
 RUN apt-get update \
     && TZ=America/Los_Angeles DEBIAN_FRONTEND=noninteractive \
         apt-get -y install tzdata \
-    && apt-get -y install procps wget less tmux htop make \
-         libssl-dev libfontconfig1-dev libcurl4-openssl-dev \
+    && apt-get -y install libssl-dev libfontconfig1-dev libcurl4-openssl-dev \
          libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev \
-         libjpeg-dev r-base \
+         libjpeg-dev \
+    && apt-get -y install procps wget less tmux htop make \
+    && apt-get -y install r-base \
     && rm -rf /var/lib/apt/lists/*
 
 # && apt-get install -y apt-transport-https software-properties-common && \
