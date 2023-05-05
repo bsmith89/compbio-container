@@ -9,8 +9,9 @@
 FROM condaforge/mambaforge:4.12.0-2
 
 ## install system packages
-RUN TZ=America/Los_Angeles; DEBIAN_FRONTEND=noninteractive; \
-    apt-get update \
+RUN apt-get update \
+    && TZ=America/Los_Angeles DEBIAN_FRONTEND=noninteractive \
+        apt-get -y install tzdata \
     && apt-get -y install procps wget less tmux htop make \
          libssl-dev libfontconfig1-dev libcurl4-openssl-dev \
          libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev \
