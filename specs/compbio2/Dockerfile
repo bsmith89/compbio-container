@@ -34,8 +34,6 @@ RUN \
     mamba install -y -c conda-forge -c bioconda \
         cython \
         ipython \
-        jupyter_contrib_nbextensions \
-        jupyter_nbextensions_configurator \
         jupyterlab \
         lz4 \
         matplotlib \
@@ -105,4 +103,9 @@ RUN \
 RUN \
     mamba install -y -c conda-forge \
         conda-pack \
+    && conda clean -afy
+RUN \
+    mamba install -y -c conda-forge -c bioconda \
+        jupyter_contrib_nbextensions \
+        jupyter_nbextensions_configurator \
     && conda clean -afy
