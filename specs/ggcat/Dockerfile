@@ -18,4 +18,9 @@ RUN \
     && git clone https://github.com/algbio/ggcat --recursive \
     && cd ggcat \
     && cargo install --path crates/cmdline/ --locked
+RUN \
+    apt-get update \
+    && apt-get install -y \
+        sqlite3 \
+    && rm -rf /var/lib/apt/lists/*
 ENV PATH="${PATH}:${HOME}/.cargo/bin"
