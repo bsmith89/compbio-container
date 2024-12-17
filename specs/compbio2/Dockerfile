@@ -1,6 +1,6 @@
 # Requirements for all of my compbio containers.
 #
-FROM condaforge/mambaforge:4.12.0-2 AS compbio
+FROM condaforge/mambaforge:24.9.2-0 AS compbio
 RUN \
     apt-get update \
     && apt-get install -y \
